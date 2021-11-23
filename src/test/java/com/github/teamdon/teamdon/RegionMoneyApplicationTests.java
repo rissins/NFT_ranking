@@ -9,5 +9,4 @@ class RegionMoneyApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

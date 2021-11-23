@@ -9,5 +9,4 @@ public class RegionMoneyApplication {
     public static void main(String[] args) {
         SpringApplication.run(RegionMoneyApplication.class, args);
     }
-
 }

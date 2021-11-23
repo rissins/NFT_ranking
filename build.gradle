@@ -4,6 +4,8 @@ plugins {
     id 'java'
     id 'org.springframework.experimental.aot' version '0.11.0-RC1'
     id 'org.hibernate.orm'
+
+    id 'spotless-conventions'
 }
 
 group = 'com.github.team-don'
@@ -27,7 +29,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
 
