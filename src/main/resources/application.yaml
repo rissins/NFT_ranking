@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/region_price?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/region_price?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     password: root
 
@@ -11,7 +11,7 @@ spring:
     show-sql: true
     hibernate:
       format_sql: true
-      ddl-auto: none
+      ddl-auto: update
 
 server:
   port: 8081

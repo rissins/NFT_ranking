@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-        lang="en">
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        dataSend();
+    });
+</script>
 <body>
+
 <p th:text="'Hello' + ${text}">Text</p>
+<div id="resultDiv" name="resultDiv"></div>
+<button type="button" onclick="dataSend()" th:onclick="|location.href='@{/bbs}'|">게시판목록으로</button>
+
+<button type="button" onclick="location.href='/bbs/write'">글작성</button>
+<div>
+    <label for="id"></label><input type="text" name="id" id="id" placeholder="삭제할 게시글 번호">
+    <button type="submit" onclick="deleteBbs()">글삭제</button>
+</div>
+<div>
+    <label for="searchId"></label><input type="text" name="searchId" id="searchId" placeholder="조회할 게시글 번호">
+    <button type="submit" onclick="searchData()">글조회</button>
+</div>
 </body>
+<script src="" th:src="@{/js/bbsDataAjax.js}"></script>
 </html>

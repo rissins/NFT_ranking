@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <button type="button" name="viewBbsList" id="viewBbsList" onclick="dataSend()">조회하기</button>
+    <button type="button" onclick="location.href='/bbs/write'">글작성</button>
+
+
+    <label for="id"></label><input type="text" name="id" id="id" placeholder="삭제할 게시글 번호">
+    <button type="submit" onclick="deleteBbs()">글삭제</button>
+
+</div>
+<div th:text="${viewBbs}" th:name="resultDiv" th:id="resultDiv"> 여기에 나옴
+
+</div>
+</body>
+<script src="" th:src="@{/js/bbsDataAjax.js}"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+</script>
+</html>
