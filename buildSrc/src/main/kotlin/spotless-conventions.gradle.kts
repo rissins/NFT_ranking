@@ -26,8 +26,7 @@ spotless {
     java {
         target("src/*/java/**/*.java")
 
-        googleJavaFormat("1.12.0").aosp().reflowLongStrings()
-            .groupArtifact("com.google.googlejavaformat:google-java-format")
+        googleJavaFormat("1.13.0")
 
         indentWithTabs()
         trimTrailingWhitespace()
