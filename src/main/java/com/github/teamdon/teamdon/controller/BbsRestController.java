@@ -2,12 +2,11 @@ package com.github.teamdon.teamdon.controller;
 
 import com.github.teamdon.teamdon.domain.Bbs;
 import com.github.teamdon.teamdon.service.BbsService;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -32,10 +31,7 @@ public class BbsRestController {
 
 	@PostMapping
 	public void writeBbs(String title, String content) {
-		final Bbs bbsContent = Bbs.builder()
-				.title(title)
-				.content(content)
-				.build();
+		final Bbs bbsContent = Bbs.builder().title(title).content(content).build();
 		bbsService.save(bbsContent);
 		log.info("Bbs write success");
 	}
@@ -45,6 +41,4 @@ public class BbsRestController {
 		bbsService.delete(id);
 		log.info("Bbs Delete Success");
 	}
-
-
 }

@@ -1,8 +1,7 @@
 package com.github.teamdon.teamdon.domain;
 
-import lombok.*;
-
 import javax.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "test")
@@ -17,8 +16,6 @@ public class Sample {
 	@Column(name = "id", nullable = false)
 	private Long id;
 
-
 	@Column(name = "sample")
 	private String sample = "";
-
 }

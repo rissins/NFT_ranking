@@ -12,11 +12,12 @@ public class HtmlElementByClassName {
 	private String contentClassName;
 
 	public void naverNewsElementByClass() {
-		titleClassName =  "news_tit";
+		titleClassName = "news_tit";
 		contentClassName = "news_dsc";
 	}
+
 	public void googleElementByClass() {
-		titleClassName =  "LC20lb MBeuO DKV0Md";
+		titleClassName = "LC20lb MBeuO DKV0Md";
 		contentClassName = "IsZvec";
 	}
 }

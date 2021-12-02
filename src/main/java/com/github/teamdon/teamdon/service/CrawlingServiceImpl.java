@@ -1,8 +1,7 @@
 package com.github.teamdon.teamdon.service;
 
-import org.springframework.stereotype.Service;
-
 import java.util.*;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CrawlingServiceImpl implements CrawlingService {
@@ -18,7 +17,4 @@ public class CrawlingServiceImpl implements CrawlingService {
 		}
 		return result;
 	}
-
-
-
 }

@@ -1,12 +1,11 @@
 package com.github.teamdon.teamdon.domain;
 
+import java.time.LocalDateTime;
+import javax.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -22,7 +21,6 @@ public class Bbs {
 	@Column(name = "id", nullable = false)
 	private Long id;
 
-
 	@Column(name = "title")
 	private String title;
 
@@ -34,6 +32,4 @@ public class Bbs {
 
 	@LastModifiedDate
 	private LocalDateTime lastModifyData;
-
-
 }
