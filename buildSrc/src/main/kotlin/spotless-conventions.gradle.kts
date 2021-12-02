@@ -26,7 +26,7 @@ spotless {
     java {
         target("src/*/java/**/*.java")
 
-        googleJavaFormat("1.13.0")
+        eclipse("4.21.0")
 
         indentWithTabs()
         trimTrailingWhitespace()
