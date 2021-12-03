@@ -1,18 +1,23 @@
 package com.github.teamdon.teamdon.controller;
 
+import com.github.teamdon.teamdon.dto.KeywordResponse;
 import com.github.teamdon.teamdon.service.CrawlingServiceImpl;
 import com.github.teamdon.teamdon.utils.htmlcrawling.Crawler;
 import com.github.teamdon.teamdon.utils.htmlcrawling.HtmlElementByClassName;
 import com.github.teamdon.teamdon.utils.htmlcrawling.NaturalLanguageProcessing;
-import java.util.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class HtmlCrawlingController {
 
 	@GetMapping("/crawling")
-	public String viewCrawling() {
+	public List<KeywordResponse> viewCrawling() {
 		NaturalLanguageProcessing naturalLanguageProcessing = new NaturalLanguageProcessing();
 		HtmlElementByClassName htmlElementByClassName = new HtmlElementByClassName();
 		CrawlingServiceImpl crawlingService = new CrawlingServiceImpl();
@@ -22,7 +27,7 @@ public class HtmlCrawlingController {
 
 		htmlElementByClassName.naverNewsElementByClass();
 
-		for (int i = 1; i < 401; i += 10) {
+		for (int i = 1; i < 11; i += 10) {
 
 			List<String> strings = crawler.crawlingByUrl(
 					"https://search.naver.com/search.naver?where=news&sm=tab_pge&query=nft&start=" + i,
@@ -42,6 +47,12 @@ public class HtmlCrawlingController {
 			result = crawlingService.sortMapByValue(map);
 		}
 
-		return result.toString();
+		// result 형태를 dto로 바꿔서 그대로 return 하면 json 형태로 출력됨.
+		List<KeywordResponse> keywordResponses = new ArrayList<>();
+		for (String word : result.keySet()) {
+			keywordResponses.add(new KeywordResponse(word, result.get(word)));
+		}
+
+		return keywordResponses;
 	}
 }
