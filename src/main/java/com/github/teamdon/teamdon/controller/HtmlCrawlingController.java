@@ -1,58 +1,61 @@
 package com.github.teamdon.teamdon.controller;
 
 import com.github.teamdon.teamdon.dto.KeywordResponse;
-import com.github.teamdon.teamdon.service.CrawlingServiceImpl;
 import com.github.teamdon.teamdon.utils.htmlcrawling.Crawler;
-import com.github.teamdon.teamdon.utils.htmlcrawling.HtmlElementByClassName;
 import com.github.teamdon.teamdon.utils.htmlcrawling.NaturalLanguageProcessing;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
+@RequiredArgsConstructor
+@Slf4j
 public class HtmlCrawlingController {
 
+	private final static int REPEAT_COUNT = 10;
+
+	private final List<Crawler> crawlers;
+	private final NaturalLanguageProcessing naturalLanguageProcessing;
+
 	@GetMapping("/crawling")
-	public List<KeywordResponse> viewCrawling() {
-		NaturalLanguageProcessing naturalLanguageProcessing = new NaturalLanguageProcessing();
-		HtmlElementByClassName htmlElementByClassName = new HtmlElementByClassName();
-		CrawlingServiceImpl crawlingService = new CrawlingServiceImpl();
-		Map<String, Integer> map = new HashMap<>();
-		Crawler crawler = new Crawler();
-		Map<String, Integer> result = new HashMap<>();
+	public List<KeywordResponse> viewCrawling() throws InterruptedException {
+		long start = System.currentTimeMillis();
+		List<String> words = new ArrayList<>();
 
-		htmlElementByClassName.naverNewsElementByClass();
-
-		for (int i = 1; i < 11; i += 10) {
-
-			List<String> strings = crawler.crawlingByUrl(
-					"https://search.naver.com/search.naver?where=news&sm=tab_pge&query=nft&start=" + i,
-					htmlElementByClassName);
-
-			// 모든단어들 List에 추가
-			List<String> strings1 = naturalLanguageProcessing.analyseKorean(strings.toString());
-
-			for (String str : strings1) {
-				map.merge(str, 1, Integer::sum);
+		// 사이트에서 문장 가져오기
+		for (Crawler crawler : crawlers) {
+			for (int i = 0; i < REPEAT_COUNT; i += 1) {
+				words.addAll(crawler.getWords((i * 10) + 1));
+				Thread.sleep(1000);
 			}
-			// Map 출력
-			// for (String key : map.keySet()) {
-			// System.out.println(key + " : " + map.get(key));
-			// }
-
-			result = crawlingService.sortMapByValue(map);
 		}
 
-		// result 형태를 dto로 바꿔서 그대로 return 하면 json 형태로 출력됨.
+		// 명사 토큰 분리
+		List<String> tokenizedWords = naturalLanguageProcessing.analyseKorean(String.join(",", words));
+
+		// List -> Map
+		Map<String, Integer> wordAndCount = new HashMap<>();
+		for (String str : tokenizedWords) {
+			wordAndCount.merge(str, 1, Integer::sum);
+		}
+
+		// count 정렬
+		List<Map.Entry<String, Integer>> entryList = new LinkedList<>(wordAndCount.entrySet());
+		entryList.sort((o1, o2) -> o2.getValue() - o1.getValue());
+
+		// 정렬된 map dto로 바꾸기
 		List<KeywordResponse> keywordResponses = new ArrayList<>();
-		for (String word : result.keySet()) {
-			keywordResponses.add(new KeywordResponse(word, result.get(word)));
+		for (Map.Entry<String, Integer> entry : entryList) {
+			keywordResponses.add(new KeywordResponse(entry.getKey(), entry.getValue()));
 		}
 
+		// json 형태로 출력
+		long end = System.currentTimeMillis();
+
+		log.info(REPEAT_COUNT + "회 반복 time = " + (end - start) + "ms");
 		return keywordResponses;
 	}
 }
