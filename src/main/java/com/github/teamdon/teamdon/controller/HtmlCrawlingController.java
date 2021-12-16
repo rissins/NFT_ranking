@@ -35,7 +35,7 @@ public class HtmlCrawlingController {
 		}
 
 		// 명사 토큰 분리
-		List<String> tokenizedWords = naturalLanguageProcessing.analyseKorean(String.join(",", words));
+		List<String> tokenizedWords = naturalLanguageProcessing.analyseKorean(words);
 
 		// List -> Map
 		Map<String, Integer> wordAndCount = new HashMap<>();
