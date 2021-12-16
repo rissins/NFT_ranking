@@ -17,12 +17,12 @@ import java.util.List;
 public class DCCrawler implements Crawler {
 
 	@Override
-	public List<String> getWords(int page) {
+	public List<String> getWords() {
 		List<String> crawlingTexts = new ArrayList<>();
 
 		try {
 			for (int i = 1; i < 11; i++) {
-				log.info("DC Crawling Page = {}", i);
+				log.info("DC Crawling Page Start = {}", i);
 				Connection conn = Jsoup.connect(Site.DC.getUrl() + i + "/sort/latest/q/nft");
 				Document html = conn.get();
 				Elements newsTitleElements = html.getElementsByClass(Site.DC.getTitleClassName());
@@ -35,9 +35,12 @@ public class DCCrawler implements Crawler {
 				for (Element element : newsContentElements) {
 					crawlingTexts.add(element.text());
 				}
-				log.info("DC Crawling Page = {}", i);
+				log.info("DC Crawling Page End = {}", i);
+				Thread.sleep(500);
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		return crawlingTexts;

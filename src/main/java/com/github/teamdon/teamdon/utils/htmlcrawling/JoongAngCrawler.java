@@ -14,7 +14,7 @@ import java.util.List;
 public class JoongAngCrawler implements Crawler {
 
 	@Override
-	public List<String> getWords(int page) throws InterruptedException {
+	public List<String> getWords() throws InterruptedException {
 		List<String> crawlingTexts = new ArrayList<>();
 
 		ChromeDriver driver = ChromeDriverBuilder.chromeDriver;

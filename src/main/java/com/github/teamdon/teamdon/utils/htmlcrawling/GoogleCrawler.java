@@ -9,7 +9,7 @@ import java.util.List;
 public class GoogleCrawler implements Crawler {
 
 	@Override
-	public List<String> getWords(int page) {
+	public List<String> getWords() {
 		return List.of("구글", "구글", "구글", "구글", "구글", "구글", "구글");
 	}
 }

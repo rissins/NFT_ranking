@@ -9,7 +9,7 @@ public enum Site {
 	GOOGLE("google.com", "LC20lb MBeuO DKV0Md", "IsZvec"),
 	CHOSUN("https://www.chosun.com/nsearch/?query=nft&siteid=&sort=1&date_period=all&date_start=&date_end=&writer=&field=&emd_word=&expt_word=&opt_chk=false&app_check=0&website=www,chosun&category=&page=", "story-card-wrapper", ""),
 	JOONGANG("https://www.joongang.co.kr/search/news?keyword=nft", "story-card-wrapper", ""),
-  DC("https://search.dcinside.com/post/p/", "tit_txt", "link_dsc_txt");
+	DC("https://search.dcinside.com/post/p/", "tit_txt", "link_dsc_txt");
 
 	private String url;
 	private String titleClassName;

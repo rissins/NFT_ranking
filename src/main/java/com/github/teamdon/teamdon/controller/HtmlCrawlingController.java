@@ -26,8 +26,8 @@ public class HtmlCrawlingController {
 		// 사이트에서 문장 가져오기
 		for (Crawler crawler : crawlers) {
 			long startCrawler = System.currentTimeMillis();
-			List<String> crawlerWords = crawler.getWords(0);
-			log.info(crawler.getClass().getSimpleName() + " 크롤링 한 문장 수 = " + crawlerWords.size() + "개");
+			List<String> crawlerWords = crawler.getWords();
+			log.info(crawler.getClass().getSimpleName() + " 크롤링된 문장 수 = " + crawlerWords.size() + "개");
 
 			words.addAll(crawlerWords);
 			long endCrawler = System.currentTimeMillis();

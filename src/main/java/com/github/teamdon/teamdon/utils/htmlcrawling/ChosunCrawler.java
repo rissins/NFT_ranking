@@ -14,12 +14,12 @@ import java.util.List;
 public class ChosunCrawler implements Crawler {
 
 	@Override
-	public List<String> getWords(int page) throws InterruptedException {
+	public List<String> getWords() throws InterruptedException {
 		List<String> crawlingTexts = new ArrayList<>();
 
 		ChromeDriver driver = ChromeDriverBuilder.chromeDriver;
 
-		String URL = Site.CHOSUN.getUrl() + page;
+		String URL = Site.CHOSUN.getUrl() + 1;
 		driver.get(URL);
 
 		Thread.sleep(1500);
