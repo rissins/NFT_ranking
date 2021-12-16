@@ -1,10 +1,11 @@
 package com.github.teamdon.teamdon.utils.htmlcrawling;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-//@Component
+@Component
 public class GoogleCrawler implements Crawler {
 
 	@Override

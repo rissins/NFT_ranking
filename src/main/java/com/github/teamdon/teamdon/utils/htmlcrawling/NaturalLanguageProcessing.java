@@ -17,9 +17,10 @@ public class NaturalLanguageProcessing {
 		KomoranResult analyzeResultList = komoran.analyze(context);
 		List<Token> tokenList = analyzeResultList.getTokenList();
 		for (Token token : tokenList) {
-			// 명사일 경우만 return
-			if (token.getPos().equals("NNG") || token.getPos().equals("NNP")) {
-				NNs.add(token.getMorph());
+			// 명사일 경우만 return NNG : 일반명사 , NNP : 고유명사, SL : 외국어
+			if (token.getPos().equals("NNG") || token.getPos().equals("NNP") || token.getPos().equals("SL")) {
+				// 소문자 -> 대문자
+				NNs.add(token.getMorph().toUpperCase());
 				// System.out.format("(%2d, %2d) %s/%s\n", token.getBeginIndex(),
 				// token.getEndIndex(), token.getMorph(), token.getPos());
 			}
