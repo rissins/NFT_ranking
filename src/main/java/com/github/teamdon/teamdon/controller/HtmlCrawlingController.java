@@ -15,8 +15,6 @@ import java.util.*;
 @Slf4j
 public class HtmlCrawlingController {
 
-	private final static int REPEAT_COUNT = 10;
-
 	private final List<Crawler> crawlers;
 	private final NaturalLanguageProcessing naturalLanguageProcessing;
 
@@ -27,10 +25,7 @@ public class HtmlCrawlingController {
 
 		// 사이트에서 문장 가져오기
 		for (Crawler crawler : crawlers) {
-			for (int i = 0; i < REPEAT_COUNT; i += 1) {
-				words.addAll(crawler.getWords((i * 10) + 1));
-				Thread.sleep(1000);
-			}
+			words.addAll(crawler.getWords(0));
 		}
 
 		// 명사 토큰 분리
@@ -55,7 +50,7 @@ public class HtmlCrawlingController {
 		// json 형태로 출력
 		long end = System.currentTimeMillis();
 
-		log.info(REPEAT_COUNT + "회 반복 time = " + (end - start) + "ms");
+		log.info("크롤링 걸린 시간 = " + (end - start) + "ms");
 		return keywordResponses;
 	}
 }
