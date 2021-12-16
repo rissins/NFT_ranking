@@ -22,7 +22,7 @@ public class DCCrawler implements Crawler {
 
 		try {
 			for (int i = 1; i < 11; i++) {
-				log.info("DC Crawling Page Start = {}", i);
+				log.info("DC Crawling Page = {}", i);
 				Connection conn = Jsoup.connect(Site.DC.getUrl() + i + "/sort/latest/q/nft");
 				Document html = conn.get();
 				Elements newsTitleElements = html.getElementsByClass(Site.DC.getTitleClassName());
@@ -35,7 +35,6 @@ public class DCCrawler implements Crawler {
 				for (Element element : newsContentElements) {
 					crawlingTexts.add(element.text());
 				}
-				log.info("DC Crawling Page End = {}", i);
 				Thread.sleep(500);
 			}
 		} catch (IOException e) {

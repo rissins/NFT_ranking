@@ -43,6 +43,9 @@ public class HtmlCrawlingController {
 			wordAndCount.merge(str, 1, Integer::sum);
 		}
 
+		// 크롤링 단어 nft 제거
+		wordAndCount.remove("NFT");
+
 		// count 정렬
 		List<Map.Entry<String, Integer>> entryList = new LinkedList<>(wordAndCount.entrySet());
 		entryList.sort((o1, o2) -> o2.getValue() - o1.getValue());

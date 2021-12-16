@@ -22,7 +22,7 @@ public class NaverCrawler implements Crawler {
 
 		try {
 			for (int i = 1; i <= 41; i += 10) {
-				log.info("Naver Crawling Page Start= {}", i);
+				log.info("Naver Crawling Page = {}", i);
 
 				Connection conn = Jsoup.connect(Site.NAVER.getUrl() + i);
 				Document html = conn.get();
@@ -36,7 +36,6 @@ public class NaverCrawler implements Crawler {
 				for (Element element : newsContentElements) {
 					crawlingTexts.add(element.text());
 				}
-				log.info("Naver Crawling Page End = {}", i);
 				Thread.sleep(500);
 			}
 
