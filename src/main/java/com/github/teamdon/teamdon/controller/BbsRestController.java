@@ -4,18 +4,18 @@ import com.github.teamdon.teamdon.domain.Bbs;
 import com.github.teamdon.teamdon.service.BbsService;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/bbs")
 public class BbsRestController {
 
-	@Autowired
-	private BbsService bbsService;
+	private final BbsService bbsService;
 
 	@GetMapping
 	public List<Bbs> jsonBbs() {

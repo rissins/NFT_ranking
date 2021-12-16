@@ -27,6 +27,11 @@
     <label for="searchId"></label><input type="text" name="searchId" id="searchId" placeholder="조회할 게시글 번호">
     <button type="submit" onclick="searchData()">글조회</button>
 </div>
+<div>
+	<button type="button" onclick="findAllByCrawlingData()">크롤링 데이터 부르기</button>
+	<div id="resultKeyword" name="resultKeyword"></div>
+</div>
 </body>
 <script src="" th:src="@{/js/bbsDataAjax.js}"></script>
+<script src="" th:src="@{/js/crawlingDataAjax.js}"></script>
 </html>
