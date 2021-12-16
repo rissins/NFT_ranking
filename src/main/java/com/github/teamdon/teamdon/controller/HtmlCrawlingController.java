@@ -25,7 +25,13 @@ public class HtmlCrawlingController {
 
 		// 사이트에서 문장 가져오기
 		for (Crawler crawler : crawlers) {
-			words.addAll(crawler.getWords(0));
+			long startCrawler = System.currentTimeMillis();
+			List<String> crawlerWords = crawler.getWords(0);
+			log.info(crawler.getClass().getSimpleName() + " 크롤링 한 문장 수 = " + crawlerWords.size() + "개");
+
+			words.addAll(crawlerWords);
+			long endCrawler = System.currentTimeMillis();
+			log.info(crawler.getClass().getSimpleName() + " 크롤링 걸린 시간 = " + (endCrawler - startCrawler) + "ms");
 		}
 
 		// 명사 토큰 분리
@@ -50,7 +56,7 @@ public class HtmlCrawlingController {
 		// json 형태로 출력
 		long end = System.currentTimeMillis();
 
-		log.info("크롤링 걸린 시간 = " + (end - start) + "ms");
+		log.info("크롤링 총 걸린 시간 = " + (end - start) + "ms");
 		return keywordResponses;
 	}
 }
