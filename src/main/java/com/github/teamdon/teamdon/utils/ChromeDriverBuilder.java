@@ -30,8 +30,7 @@ public class ChromeDriverBuilder {
 
 		options.addArguments("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36");
 
-		org.openqa.selenium.chrome.ChromeDriver driver = new org.openqa.selenium.chrome.ChromeDriver(options);
-		driver.manage().window().setSize(new Dimension(1000, 768));
+		ChromeDriver driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
 		return driver;
 	}
