@@ -8,4 +8,24 @@ pipeline {
              }
         }
     }
+
+	stages {
+		stage("jar 패키징") {
+			steps {
+				ssh {
+					'./gradlew bootJar'
+				}
+			}
+		}
+	}
+
+	stages {
+		stage("aws 우분투로 파일 보내기") {
+			steps {
+				ssh {
+					'scp -i ~/.ssh/nftranking.pem build/libs/nft-1.jar ubuntu@3.35.135.61:~/'
+				}
+			}
+		}
+	}
 }
