@@ -21,6 +21,13 @@ public class ChromeDriverBuilder {
 		options.addArguments("--disable-default-apps");     // 기본앱 사용안함
 		options.addArguments("--disable-gpu");
 		options.addArguments("headless");
+
+		options.addArguments("--disable-extensions");
+		options.addArguments("--no-sandbox");
+		options.addArguments("--incognito");
+		options.addArguments("--disable-application-cache");
+		options.addArguments("--disable-dev-shm-usage");
+
 		options.addArguments("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36");
 
 		org.openqa.selenium.chrome.ChromeDriver driver = new org.openqa.selenium.chrome.ChromeDriver(options);
