@@ -12,6 +12,6 @@ public class BbsController {
 
 	@GetMapping("/bbs/write")
 	public String writeForm() {
-		return "/bbs/bbsWrite";
+		return "bbs/bbsWrite";
 	}
 }

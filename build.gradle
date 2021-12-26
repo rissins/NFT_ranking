@@ -10,6 +10,7 @@ plugins {
 group = 'com.github.team-don'
 version = '1'
 sourceCompatibility = '11'
+targetCompatibility = '11'
 
 configurations {
 	compileOnly {
