@@ -1,12 +1,15 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/region_price?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    #    url: jdbc:mysql://localhost:3306/region_price?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+#    url: jdbc:mysql://database-1.cr8geph4ndui.ap-northeast-2.rds.amazonaws.com:3306/nft_ranking?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    #    username: root
+#    username: admin
+#    password: whtnals1
+  #    password: root
     url: jdbc:mysql://database-1.cr8geph4ndui.ap-northeast-2.rds.amazonaws.com:3306/nft_ranking?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-#    username: root
     username: admin
-    password: whtnals1
-#    password: root
+    password: nftranking123!
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
