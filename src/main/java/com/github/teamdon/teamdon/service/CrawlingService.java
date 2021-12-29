@@ -1,10 +1,12 @@
 package com.github.teamdon.teamdon.service;
 
 import com.github.teamdon.teamdon.domain.Keyword;
+import com.github.teamdon.teamdon.dto.KeywordResponse;
 import com.github.teamdon.teamdon.repository.KeywordRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -33,5 +35,28 @@ public class CrawlingService {
 			keywordRepository.save(
 					Keyword.builder().word(stringIntegerEntry.getKey()).count(stringIntegerEntry.getValue()).build());
 		}
+	}
+
+	public List<KeywordResponse> findRecentPerHour() {
+		LocalDateTime startDate = LocalDateTime.now().minusHours(1);
+		LocalDateTime endDate = LocalDateTime.now();
+		List<Keyword> byCreatDateBetween = keywordRepository.findByCreatDateBetween(startDate, endDate);
+		byCreatDateBetween.sort(Comparator.comparing(Keyword::getCount).reversed());
+		Map<String, Integer> keywordMap = new HashMap<>();
+		for (Keyword keyword : byCreatDateBetween) {
+			if (!keywordMap.containsKey(keyword.getWord())) {
+				keywordMap.put(keyword.getWord(), keyword.getCount());
+			} else {
+				keywordMap.replace(keyword.getWord(), keyword.getCount() + keywordMap.get(keyword.getWord()));
+			}
+		}
+
+		List<KeywordResponse> keywordResponses = new ArrayList<>();
+		for (Map.Entry<String, Integer> stringIntegerEntry : keywordMap.entrySet()) {
+			KeywordResponse keywordResponse = new KeywordResponse(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
+			keywordResponses.add(keywordResponse);
+		}
+
+		return keywordResponses;
 	}
 }

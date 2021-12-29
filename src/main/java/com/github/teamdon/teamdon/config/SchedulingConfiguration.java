@@ -20,7 +20,7 @@ public class SchedulingConfiguration {
 	private final RestTemplateEx templateEx;
 	private final CrawlingService crawlingService;
 
-	@Scheduled(cron = "0 0/5 * * * ?") // 5분마다 반복
+	@Scheduled(cron = "0 0 0/1 * * *") // 1시간마다 반복
 	public void testSchedule() throws ParseException {
 		log.info("repeatNumber = {} START", SCHEDULE_REPEAT_NUMBER);
 		Map<String, Integer> jsonToMap = templateEx.test();

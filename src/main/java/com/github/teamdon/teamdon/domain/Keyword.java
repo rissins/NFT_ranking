@@ -1,11 +1,12 @@
 package com.github.teamdon.teamdon.domain;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -28,4 +29,7 @@ public class Keyword {
 	@Column(name = "count")
 	@NotNull
 	private Integer count;
+
+	@CreatedDate
+	private LocalDateTime creatDate;
 }
