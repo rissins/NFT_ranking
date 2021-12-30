@@ -8,6 +8,6 @@ public class KomoranBuilder {
 	public static final Komoran komoran = initKomoran();
 
 	public static Komoran initKomoran() {
-		return new Komoran(DEFAULT_MODEL.FULL);
+		return new Komoran(DEFAULT_MODEL.LIGHT);
 	}
 }
