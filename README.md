@@ -13,7 +13,7 @@
 - id : admin
 - password : ntf111
 
-- 배포서버 
+- 배포서버
 - 계정 : cch
 - 비밀번호 : nftranking123!
 - 아이피 : 58.120.219.168
