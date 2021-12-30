@@ -4,6 +4,7 @@ import com.github.teamdon.teamdon.domain.Keyword;
 import com.github.teamdon.teamdon.dto.KeywordResponse;
 import com.github.teamdon.teamdon.repository.KeywordRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.*;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CrawlingService {
 
 	private final KeywordRepository keywordRepository;
@@ -37,12 +39,14 @@ public class CrawlingService {
 		}
 	}
 
-	public List<KeywordResponse> findRecentPerHour() {
+	public List<KeywordResponse> findRecentPerHour(int count) {
 		LocalDateTime startDate = LocalDateTime.now().minusHours(1);
 		LocalDateTime endDate = LocalDateTime.now();
 		List<Keyword> byCreatDateBetween = keywordRepository.findByCreatDateBetween(startDate, endDate);
 		byCreatDateBetween.sort(Comparator.comparing(Keyword::getCount).reversed());
 		Map<String, Integer> keywordMap = new HashMap<>();
+
+		// 중복값 카운트 더하기
 		for (Keyword keyword : byCreatDateBetween) {
 			if (!keywordMap.containsKey(keyword.getWord())) {
 				keywordMap.put(keyword.getWord(), keyword.getCount());
@@ -51,12 +55,16 @@ public class CrawlingService {
 			}
 		}
 
+		// 더한 값들 Map -> List
 		List<KeywordResponse> keywordResponses = new ArrayList<>();
 		for (Map.Entry<String, Integer> stringIntegerEntry : keywordMap.entrySet()) {
-			KeywordResponse keywordResponse = new KeywordResponse(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
+			KeywordResponse keywordResponse = new KeywordResponse(stringIntegerEntry.getKey(),
+					stringIntegerEntry.getValue());
 			keywordResponses.add(keywordResponse);
 		}
-
-		return keywordResponses;
+		log.info("MAX_INDEX = {}", keywordResponses.size());
+		keywordResponses.sort(Comparator.comparing(KeywordResponse::getCount).reversed());
+		// count개 출력
+		return keywordResponses.subList(0, count);
 	}
 }

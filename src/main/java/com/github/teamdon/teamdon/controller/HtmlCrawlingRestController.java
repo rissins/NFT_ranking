@@ -6,6 +6,7 @@ import com.github.teamdon.teamdon.service.CrawlingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class HtmlCrawlingRestController {
 	}
 
 	@GetMapping("/crawling/data")
-	public List<KeywordResponse> findByMysqlPerHour() {
-		return crawlingService.findRecentPerHour();
+	public List<KeywordResponse> findByMysqlPerHour(@RequestParam(defaultValue = "30") int count) {
+		return crawlingService.findRecentPerHour(count);
 	}
 }
