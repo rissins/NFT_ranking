@@ -5,9 +5,9 @@ import kr.co.shineware.nlp.komoran.core.Komoran;
 
 public class KomoranBuilder {
 
-	public static final Komoran komoran = getKomoran();
+	public static final Komoran komoran = initKomoran();
 
-	private static Komoran getKomoran() {
+	public static Komoran initKomoran() {
 		return new Komoran(DEFAULT_MODEL.FULL);
 	}
 }
