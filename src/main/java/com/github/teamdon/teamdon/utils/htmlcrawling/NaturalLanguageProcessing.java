@@ -17,6 +17,7 @@ public class NaturalLanguageProcessing {
 		List<String> result = new ArrayList<>();
 
 		for (String sentence : context) {
+			if(sentence.isBlank()) continue;
 			KomoranResult analyzeResultList = KomoranBuilder.komoran.analyze(sentence);
 			List<Token> tokenList = analyzeResultList.getTokenList();
 			for (Token token : tokenList) {
