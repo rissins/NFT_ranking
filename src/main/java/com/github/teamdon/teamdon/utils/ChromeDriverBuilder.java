@@ -11,7 +11,11 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class ChromeDriverBuilder {
 
-	public final ChromeDriver chromeDriver = getChromeDriver();
+	public final ChromeDriver chromeDriver;
+
+	private ChromeDriverBuilder() {
+		chromeDriver = getChromeDriver();
+	}
 
 	private ChromeDriver getChromeDriver() {
 		Path path = Paths.get("chromedriver"); // 현재 package의
