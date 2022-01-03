@@ -3,22 +3,25 @@ package com.github.teamdon.teamdon.utils.htmlcrawling;
 import com.github.teamdon.teamdon.utils.KomoranBuilder;
 import kr.co.shineware.nlp.komoran.model.KomoranResult;
 import kr.co.shineware.nlp.komoran.model.Token;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class NaturalLanguageProcessing {
 
+	private KomoranBuilder komoranBuilder;
 
 	public List<String> analyseKorean(List<String> context) {
 
 		List<String> result = new ArrayList<>();
 
 		for (String sentence : context) {
-			if(sentence.isBlank()) continue;
-			KomoranResult analyzeResultList = KomoranBuilder.komoran.analyze(sentence);
+			if (sentence.isBlank()) continue;
+			KomoranResult analyzeResultList = komoranBuilder.komoran.analyze(sentence);
 			List<Token> tokenList = analyzeResultList.getTokenList();
 			for (Token token : tokenList) {
 				// 명사일 경우만 return NNG : 일반명사 , NNP : 고유명사, SL : 외국어

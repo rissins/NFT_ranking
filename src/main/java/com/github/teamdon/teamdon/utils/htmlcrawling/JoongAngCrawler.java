@@ -1,6 +1,7 @@
 package com.github.teamdon.teamdon.utils.htmlcrawling;
 
 import com.github.teamdon.teamdon.utils.ChromeDriverBuilder;
+import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,13 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class JoongAngCrawler implements Crawler {
+
+	private final ChromeDriverBuilder chromeDriverBuilder;
 
 	@Override
 	public List<String> getWords() throws InterruptedException {
 		List<String> crawlingTexts = new ArrayList<>();
 
-		ChromeDriver driver = ChromeDriverBuilder.chromeDriver;
+		ChromeDriver driver = chromeDriverBuilder.chromeDriver;
 
 		String URL = Site.JOONGANG.getUrl();
 		driver.get(URL);

@@ -1,6 +1,5 @@
 package com.github.teamdon.teamdon.utils;
 
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Component;
@@ -9,11 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
+@Component
 public class ChromeDriverBuilder {
 
-	public static final ChromeDriver chromeDriver = getChromeDriver();
+	public final ChromeDriver chromeDriver = getChromeDriver();
 
-	private static ChromeDriver getChromeDriver() {
+	private ChromeDriver getChromeDriver() {
 		Path path = Paths.get("chromedriver"); // 현재 package의
 		System.setProperty("webdriver.chrome.driver", path.toString());
 		ChromeOptions options = new ChromeOptions();
