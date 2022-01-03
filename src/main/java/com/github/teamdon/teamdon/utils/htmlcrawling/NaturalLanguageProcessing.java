@@ -30,7 +30,6 @@ public class NaturalLanguageProcessing {
 				}
 			}
 		}
-
 		return result;
 	}
 }

@@ -24,7 +24,8 @@ public class HtmlCrawlingRestController {
 	}
 
 	@GetMapping("/crawling/data")
-	public List<KeywordResponse> findByMysqlPerHour(@RequestParam(defaultValue = "30") int count) {
-		return crawlingService.findRecentPerHour(count);
+	public List<KeywordResponse> findByMysqlPerHour(@RequestParam(defaultValue = "30") int count,
+			@RequestParam(defaultValue = "0") int hour) {
+		return crawlingService.findRecentPerHour(count, hour);
 	}
 }

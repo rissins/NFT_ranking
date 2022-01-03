@@ -39,9 +39,9 @@ public class CrawlingService {
 		}
 	}
 
-	public List<KeywordResponse> findRecentPerHour(int count) {
-		LocalDateTime startDate = LocalDateTime.now().minusHours(1);
-		LocalDateTime endDate = LocalDateTime.now();
+	public List<KeywordResponse> findRecentPerHour(int count, int hour) {
+		LocalDateTime startDate = LocalDateTime.now().minusHours(hour + 1);
+		LocalDateTime endDate = LocalDateTime.now().minusHours(hour);
 		List<Keyword> byCreatDateBetween = keywordRepository.findByCreatDateBetween(startDate, endDate);
 		byCreatDateBetween.sort(Comparator.comparing(Keyword::getCount).reversed());
 		Map<String, Integer> keywordMap = new HashMap<>();
@@ -57,9 +57,14 @@ public class CrawlingService {
 
 		// 더한 값들 Map -> List
 		List<KeywordResponse> keywordResponses = new ArrayList<>();
+		KeywordResponse keywordResponse;
 		for (Map.Entry<String, Integer> stringIntegerEntry : keywordMap.entrySet()) {
-			KeywordResponse keywordResponse = new KeywordResponse(stringIntegerEntry.getKey(),
-					stringIntegerEntry.getValue());
+			if (stringIntegerEntry.getKey().equals("코")) {
+				keywordResponse = new KeywordResponse("코인", stringIntegerEntry.getValue());
+			} else {
+				keywordResponse = new KeywordResponse(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
+			}
+			if (stringIntegerEntry.getKey().length() == 1 && !stringIntegerEntry.getKey().equals("돈")) continue;
 			keywordResponses.add(keywordResponse);
 		}
 		log.info("MAX_INDEX = {}", keywordResponses.size());
