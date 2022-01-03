@@ -59,10 +59,18 @@ public class CrawlingService {
 		List<KeywordResponse> keywordResponses = new ArrayList<>();
 		KeywordResponse keywordResponse;
 		for (Map.Entry<String, Integer> stringIntegerEntry : keywordMap.entrySet()) {
-			if (stringIntegerEntry.getKey().equals("코")) {
-				keywordResponse = new KeywordResponse("코인", stringIntegerEntry.getValue());
-			} else {
-				keywordResponse = new KeywordResponse(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
+			switch (stringIntegerEntry.getKey()) {
+				case "코":
+					keywordResponse = new KeywordResponse("코인", stringIntegerEntry.getValue());
+					break;
+				case "메타":
+					keywordResponse = new KeywordResponse("메타버스", stringIntegerEntry.getValue());
+					break;
+				case "버스":
+					continue;
+				default:
+					keywordResponse = new KeywordResponse(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
+					break;
 			}
 			if (stringIntegerEntry.getKey().length() == 1 && !stringIntegerEntry.getKey().equals("돈")) continue;
 			keywordResponses.add(keywordResponse);
