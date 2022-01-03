@@ -67,7 +67,11 @@ public class CrawlingService {
 					keywordResponse = new KeywordResponse("메타버스", stringIntegerEntry.getValue());
 					break;
 				case "버스":
+				case "체인":
 					continue;
+				case "블록":
+					keywordResponse = new KeywordResponse("블록체인", stringIntegerEntry.getValue());
+					break;
 				default:
 					keywordResponse = new KeywordResponse(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
 					break;
