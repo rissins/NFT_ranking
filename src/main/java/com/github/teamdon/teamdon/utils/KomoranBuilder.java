@@ -9,11 +9,11 @@ public class KomoranBuilder {
 
 	public final Komoran komoran;
 
-	public KomoranBuilder() {
+	private KomoranBuilder() {
 		komoran = initKomoran();
 	}
 
-	public Komoran initKomoran() {
+	private Komoran initKomoran() {
 		return new Komoran(DEFAULT_MODEL.LIGHT);
 	}
 }

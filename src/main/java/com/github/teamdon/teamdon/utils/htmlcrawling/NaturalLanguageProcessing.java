@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NaturalLanguageProcessing {
 
-	private KomoranBuilder komoranBuilder;
+	private final KomoranBuilder komoranBuilder;
 
 	public List<String> analyseKorean(List<String> context) {
 
