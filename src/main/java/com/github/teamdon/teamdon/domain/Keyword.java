@@ -31,5 +31,5 @@ public class Keyword {
 	private Integer count;
 
 	@CreatedDate
-	private LocalDateTime creatDate;
+	private LocalDateTime createdDate;
 }

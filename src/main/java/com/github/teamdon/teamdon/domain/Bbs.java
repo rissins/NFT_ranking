@@ -28,8 +28,8 @@ public class Bbs {
 	private String content;
 
 	@CreatedDate
-	private LocalDateTime creatDate;
+	private LocalDateTime createdDate;
 
 	@LastModifiedDate
-	private LocalDateTime lastModifyData;
+	private LocalDateTime lastModifiedDate;
 }

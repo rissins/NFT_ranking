@@ -42,7 +42,7 @@ public class CrawlingService {
 	public List<KeywordResponse> findRecentPerHour(int count, int hour) {
 		LocalDateTime startDate = LocalDateTime.now().minusHours(hour + 1);
 		LocalDateTime endDate = LocalDateTime.now().minusHours(hour);
-		List<Keyword> byCreatDateBetween = keywordRepository.findByCreatDateBetween(startDate, endDate);
+		List<Keyword> byCreatDateBetween = keywordRepository.findByCreatedDateBetween(startDate, endDate);
 		byCreatDateBetween.sort(Comparator.comparing(Keyword::getCount).reversed());
 		Map<String, Integer> keywordMap = new HashMap<>();
 

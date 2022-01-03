@@ -11,5 +11,5 @@ import java.util.List;
 public interface KeywordRepository extends JpaRepository<Keyword, Long> {
 	List<Keyword> findByWord(String word);
 
-	List<Keyword> findByCreatDateBetween(LocalDateTime start, LocalDateTime end);
+	List<Keyword> findByCreatedDateBetween(LocalDateTime start, LocalDateTime end);
 }
