@@ -48,5 +48,5 @@
 |            [ckdgus08](https://github.com/ckdgus08)             |            [rissins](https://github.com/rissisns)                       |  
 | :----------------------------------------------------------: | :----------------------------------------------------------:
 | <img src="https://avatars.githubusercontent.com/u/51824072?v=4" width=200px alt="_"/> | <img src="https://avatars.githubusercontent.com/u/85064661?v=4" width=200px alt="_"/>  
-|                         프론트엔드                         |                        백엔드                                | 
+|                         프론트엔드,                          |                        백엔드                                | 
 
