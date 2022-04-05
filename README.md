@@ -1,31 +1,44 @@
-# region_price
+# **5NFT** 📅
+<br/>
+[사이트 링크](https://5nft.net/)
 
-### spotless 사용법
+## 🚀 Intro
 
-```
-./gradlew spotlessApply
-```
+1. 10분마다 갱신
 
-### 젠킨스
+<br/>
+
+## 💻Version
++ Java 11
++ Gradle 7.4
++ Spring Boot 2.6.3
+<br/>
+
+## ⚡Skills
+
+### BackEnd
+- Java, Spring Boot, JPA, Spring Security, Lombok
+
+### FrontEnd
+- Thymeleaf, JavaScript, JQuery
 
 
-- url : [http://58.120.219.168:8088/](http://58.120.219.168:8088/)
-- id : admin
-- password : ntf111
+### DB
+- AWS RDS ( MySQL )
+- AWS S3
 
-- 배포서버
-- 계정 : cch
-- 비밀번호 : nftranking123!
-- 아이피 : 58.120.219.168
+### CI/CD
+- Jenkins
 
-### cmd 콘솔에서 aws ssh 접속하기
-``` shell
-$ ssh -i [pem 파일 경로] [ec2유저]@[ec2아이피]
+<br/>
 
-ex) ssh -i /User/cch/nftranking.pem ubuntu@3.35.135.61
-ex) ssh -i C:/admins/nftranking.pem ubuntu@3.35.135.61
-```
+## ⚖️Use Library
+ 
+- 
 
-### 프로젝트 수행 기간
-- 2021.11.27 ~ 2021.12.25 (기능구현) - 추가적인 것들 제외하고 단순 기능구현만.
-- 2021.12.26 ~ 2021.12.31 (테스트코드)
+<br/>
+
+## 🛠 Project Architecture
+- **User Request Flow**
+
+
