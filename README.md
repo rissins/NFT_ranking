@@ -22,7 +22,7 @@
 - Java, Spring Boot, JPA, Spring Security, Lombok
 
 ### FrontEnd
-- Thymeleaf, JavaScript, JQuery
+- Flutter
 
 
 ### DB
