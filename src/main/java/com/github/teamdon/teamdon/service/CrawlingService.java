@@ -68,6 +68,8 @@ public class CrawlingService {
 					break;
 				case "버스":
 				case "체인":
+				case "HTTPS":
+				case "KR":
 					continue;
 				case "블록":
 					keywordResponse = new KeywordResponse("블록체인", stringIntegerEntry.getValue());
